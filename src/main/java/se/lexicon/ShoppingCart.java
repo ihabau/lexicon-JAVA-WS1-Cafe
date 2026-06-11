@@ -70,17 +70,18 @@ public class ShoppingCart {
             }
 
             System.out.println(devider);
-            System.out.println("|Do you need anything else? type yes/no");
+            System.out.println("|Do you need anything else? type y/n");
             Scanner checkout = new Scanner(System.in);
             String checkoutStr = checkout.next();
-            if (checkoutStr.equalsIgnoreCase("no") ) {
+            if (checkoutStr.equalsIgnoreCase("n") ) {
                 break;
             }
         }
+        System.out.println(devider);
         System.out.println(ShoppingCart.basket.size());
-        for (ShoppingCart item : ShoppingCart.basket) {
-            System.out.printf("|%sDEBUG:  %s | %s | %s |\n", ANSI_RED, item.itemName, item.amount, item.unitPrice);
-        }
+        //for (ShoppingCart item : ShoppingCart.basket) {
+            //System.out.printf("|%sDEBUG:  %s | %s | %s |\n", ANSI_RED, item.itemName, item.amount, item.unitPrice);
+        //}
     }
 }
 //next part is calculation and receipt and vat
