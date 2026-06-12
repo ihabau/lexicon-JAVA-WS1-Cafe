@@ -4,11 +4,8 @@ package se.lexicon;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main(String[] args) {
-        Grettings.Gretings();
-        CatalogPresentation.CatalogPresentation();
-        ShoppingCart.ShoppingProcedure();
-        Calculation.Calculation();
-        Grettings.thankYou();
+
+        Cue.Cue();
     }
 }
 // to fix question error handling
