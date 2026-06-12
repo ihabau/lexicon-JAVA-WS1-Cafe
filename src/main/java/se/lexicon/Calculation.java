@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Calculation {
     public String cardNr;
-
+    public static Boolean loyaltyCard = false;
 
     public static void Calculation() {
 
-        boolean loyaltyCard = false;
+        //boolean loyaltyCard = false;
         double totalPrice = 0;
         String devider = "|===================================================|";
         String devider2 = "|---------------------------------------------------|";
@@ -20,6 +20,8 @@ public class Calculation {
         if (loyaltyStateStr.equalsIgnoreCase("y")) { loyaltyCard = true; };
 
         System.out.println(devider);
+        System.out.println("|                    --Reciept--                    |");
+        System.out.println(devider2);
         System.out.printf("|%-16.16s|%-6.6s | %s | %5s |\n", "Item name","amount","unit price","total price");
         System.out.println(devider);
 
@@ -35,7 +37,13 @@ public class Calculation {
             totalPrice += discount;
             System.out.printf("|Loyalty discount 15%%: %24.2fs SEK|\n", discount);
         }
-        if (!loyaltyCard) {
+        if (totalPrice > 150) {
+
+            double discountLO = totalPrice * -0.1;
+            totalPrice += discountLO;
+            System.out.printf("|Large order discount 10%%: %20.2fs SEK|\n", discountLO);
+        }
+        if (!loyaltyCard && totalPrice < 150) {
             System.out.println("|No loyalty card presented 0% discount.             |");
         }
         double vat = totalPrice * 0.12;
@@ -43,14 +51,6 @@ public class Calculation {
         System.out.printf("|VAT 12%% %39.2f SEK|\n", vat);
         System.out.println(devider2);
         System.out.printf("|TOTAL %41.2f SEK|\n", totalPrice);
-        System.out.println(devider);
-
-        // calculations
-        // vat 12% (112% of price)
-        // members discount 15% (75% of price)
-        // item total price eg ice cream 2x12 kr is 24sek in total
-        // total final price
-
     }
 
     public static void RandomGen() {

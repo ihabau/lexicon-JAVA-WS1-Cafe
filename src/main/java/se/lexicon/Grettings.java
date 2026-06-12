@@ -31,13 +31,15 @@ public class Grettings {
         leftSpace = (int) Math.ceil((48 - message.length()) / 2.0);;
         rightSpace = totalSpace - (leftSpace + message.length());
 
-        System.out.println(leftSpace);
         String dynamicFormat = "|%" + leftSpace + "s %s %" + rightSpace + "s |\n";
 
 
         System.out.println(devider);
         //System.out.printf("|%16.16s Thank you, %s! %17.17s|\n","", userName, "");
         System.out.printf(dynamicFormat,"", message, "");
+        if (!Calculation.loyaltyCard) {
+            System.out.println("|    register royalty card and get 15% discount!    |");
+        }
         System.out.printf("|%18.18s See you again. %17.17s|\n","", "");
         System.out.println(devider);
     }
