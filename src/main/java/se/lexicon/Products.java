@@ -2,7 +2,7 @@ package se.lexicon;
 
 public class Products {
     public String itemName;
-    double itemPrice;
+    public double itemPrice;
 
     public Products(String itemName, double itemPrice) {
         this.itemName = itemName;

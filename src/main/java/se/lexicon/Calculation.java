@@ -51,6 +51,7 @@ public class Calculation {
         System.out.printf("|VAT 12%% %39.2f SEK|\n", vat);
         System.out.println(devider2);
         System.out.printf("|TOTAL %41.2f SEK|\n", totalPrice);
+        Cue.AddUser(totalPrice);
     }
 
     public static void RandomGen() {
