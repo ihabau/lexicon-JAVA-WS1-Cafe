@@ -14,11 +14,19 @@ public class Calculation {
         String devider2 = "|---------------------------------------------------|";
         System.out.println("| Do you have a loyality card? input y/n            |");
         System.out.println(devider);
-        Scanner loyaltyState = new Scanner(System.in);
-        String loyaltyStateStr = loyaltyState.next().toLowerCase();
 
-        if (loyaltyStateStr.equalsIgnoreCase("y")) { loyaltyCard = true; };
-
+        while(true) {
+            Scanner loyaltyState = new Scanner(System.in);
+            String loyaltyStateStr = loyaltyState.next().toLowerCase();
+            if (loyaltyStateStr.equalsIgnoreCase("y") || loyaltyStateStr.equalsIgnoreCase("n")) {
+                if (loyaltyStateStr.equalsIgnoreCase("y")) {
+                    loyaltyCard = true;
+                };
+                break;
+            } else {
+                System.out.println("|              Wrong input try again                |\n");
+            }
+        }
         System.out.println(devider);
         System.out.println("|                    --Reciept--                    |");
         System.out.println(devider2);

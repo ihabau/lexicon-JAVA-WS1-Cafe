@@ -37,19 +37,37 @@ public class ShoppingCart {
 
         //------------------------------------
         String devider = "|===================================================|";
-
+        boolean catalogError = false;
 
         while (true) {
             System.out.println("|Type the item number and amount!                   |");
-            Scanner item = new Scanner(System.in);
-            int itemNumber = item.nextInt();
-            int itemAmount = item.nextInt();
+            boolean success = false;
+
+            int itemNumber = 0;
+            int itemAmount = 0;
+
+
+            // try catch error handling loop
+            while(!success) {
+                Scanner item = new Scanner(System.in);
+                try {
+                    itemNumber = item.nextInt();
+                    itemAmount = item.nextInt();
+                    success = true;
+                } catch ( Exception  e) {
+                    System.out.println("❌ Error: try again!\n");
+                }
+            }
+            // ------------------------------
+
             int catalogIndex = itemNumber - 1;
             boolean repeatedItem = false;
             int repeatIndex = 0;
             //int changeIndex = 0;
             //-------------------------------------
+
             for (ShoppingCart cartItem : ShoppingCart.basket) {
+                if (catalogIndex < 0 || catalogIndex >= Products.CATALOG.length) {continue;}
                 if (Products.CATALOG[catalogIndex].itemName.equalsIgnoreCase(cartItem.itemName)) {
                    repeatedItem = true;
                    //changeIndex = repeatIndex;
@@ -66,7 +84,14 @@ public class ShoppingCart {
                 ShoppingCart.basket.get(repeatIndex).amount += itemAmount;
             } else if (repeatedItem == false) {
                 System.out.println("new item added to basket");
-                ShoppingCart.addItem(Products.CATALOG[catalogIndex].itemName, Products.CATALOG[catalogIndex].itemPrice, itemAmount);
+
+                try {
+                    ShoppingCart.addItem(Products.CATALOG[catalogIndex].itemName, Products.CATALOG[catalogIndex].itemPrice, itemAmount);
+                } catch (Exception e) {
+                   System.out.println("❌ Error: item number out of bound!");
+                   //catalogError = true;
+                   continue;
+                }
             }
 
             System.out.println(devider);
@@ -77,11 +102,9 @@ public class ShoppingCart {
                 break;
             }
         }
-        System.out.println(devider);
-        System.out.println(ShoppingCart.basket.size());
-        //for (ShoppingCart item : ShoppingCart.basket) {
-            //System.out.printf("|%sDEBUG:  %s | %s | %s |\n", ANSI_RED, item.itemName, item.amount, item.unitPrice);
-        //}
+
+            System.out.println(devider);
+
     }
 }
 //next part is calculation and receipt and vat
